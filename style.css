@@ -1,0 +1,156 @@
+/* 1. 시스템 초기화 및 코어 서체 정의 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000; /* 완전한 암전 상태의 스크린 */
+    color: #ffffff; /* 하이 콘트라스트 화이트 신호 */
+    font-family: "Courier New", Courier, monospace, sans-serif; /* 계측기 모노스페이스 서체 */
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    padding: 40px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 2. 상단 헤더 영역 (브랜딩 & 데리다 선언) */
+.system-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #222222; /* 미세한 경계선 */
+    padding-bottom: 30px;
+    margin-bottom: 60px;
+}
+
+.system-header h1 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.status-signal {
+    font-size: 0.75rem;
+    color: #888888;
+    margin-top: 4px;
+}
+
+.manifesto {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #aaaaaa;
+}
+
+/* 3. 아카이브 리스트 그리드 (가장 건조하고 엄격한 형태) */
+.archive-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* 여백 없이 선으로만 구분 */
+}
+
+.archive-item {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* 메타데이터 영역과 본문 영역 분리 */
+    border-bottom: 1px solid #111111;
+    padding: 30px 0;
+    transition: background-color 0.2s ease;
+}
+
+/* 마우스 호버 시 미세하게 신호가 들어오는 연출 */
+.archive-item:hover {
+    background-color: #050505;
+}
+
+.item-meta {
+    font-size: 0.75rem;
+    color: #666666;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.item-meta .index {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.item-title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+}
+
+.item-desc {
+    font-size: 0.85rem;
+    color: #888888;
+    max-width: 600px;
+}
+
+/* 4. 하단 푸터 영역 (정체성 정렬) */
+.system-footer {
+    border-top: 1px solid #222222;
+    padding-top: 30px;
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #555555;
+}
+
+.identities {
+    display: flex;
+    gap: 30px;
+}
+
+.identities span {
+    position: relative;
+}
+
+/* 정체성 사이의 마침표 장치 */
+.identities span:not(:last-child)::after {
+    content: " .";
+    color: #333333;
+    position: absolute;
+    right: -18px;
+}
+
+.contact a {
+    color: #555555;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact a:hover {
+    color: #ffffff; /* 이메일 주소에 호버하면 신호 켜짐 */
+}
+
+/* 모바일 반응형 대응 (화면이 좁아지면 1열로 세로 정렬) */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+    .system-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .archive-item {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .system-footer {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .identities {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .identities span:not(:last-child)::after {
+        content: "";
+    }
+}
