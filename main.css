@@ -1,0 +1,110 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    background-color: #161616; 
+    color: #e5e5e5;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: -0.02em; 
+}
+
+/* 전체 레이아웃 (PC 기준 기본값) */
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+    padding: 50px;
+}
+
+/* 좌측 네비게이션 고정 */
+nav {
+    width: 200px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+}
+
+.logo-small {
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #e5e5e5;
+}
+
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    list-style: none;
+}
+
+.menu-list a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.menu-list a:hover, .menu-list a.active {
+    color: #e5e5e5;
+}
+
+/* 우측 콘텐츠 영역 */
+main {
+    margin-left: 240px;
+    flex: 1;
+}
+
+/* 섹션 기본 상태: 숨김 */
+.content-section {
+    display: none;
+}
+
+/* 활성화된 섹션만 노출 */
+.content-section.active {
+    display: block;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.placeholder {
+    font-size: 13px;
+    color: #8c8c8c;
+    line-height: 1.6;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ========================================================== */
+/* 미디어 쿼리: 모바일 반응형 대응 (화면 가로폭 768px 이하) */
+/* ========================================================== */
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column; /* 세로 배열로 변경 */
+        padding: 30px 20px;
+    }
+
+    nav {
+        position: relative; /* 고정 해제 */
+        width: 100%;
+        gap: 25px;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #2a2a2a;
+        padding-bottom: 20px;
+    }
+
+    .menu-list {
+        flex-direction: row; /* 메뉴를 가로로 한 줄 배치 */
+        gap: 20px;
+    }
+
+    main {
+        margin-left: 0; /* 좌측 여백 제거 */
+        width: 100%;
+    }
+}
