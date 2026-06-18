@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALLDIE - Archive</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; background-color: #fcfbf9; color: #111; letter-spacing: -0.02em; }
+
+        /* 전체 레이아웃 구성 */
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        /* 좌측 고정 네비게이션 */
+        nav {
+            width: 200px;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .logo-small {
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #111;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .menu-list a {
+            font-size: 13px;
+            text-decoration: none;
+            color: #777;
+            transition: color 0.3s ease;
+        }
+
+        .menu-list a:hover, .menu-list a.active {
+            color: #111;
+        }
+
+        /* 우측 콘텐츠 영역 */
+        main {
+            margin-left: 240px;
+            flex: 1;
+        }
+
+        .content-placeholder {
+            font-size: 13px;
+            color: #999;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- 네비게이션 -->
+        <nav>
+            <a href="main.html" class="logo-small">ad</a>
+            <ul class="menu-list">
+                <li><a href="#about">about</a></li>
+                <li><a href="#works" class="active">works</a></li>
+                <li><a href="#news">news</a></li>
+                <li><a href="#contact">contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- 콘텐츠 뷰포트 -->
+        <main>
+            <div class="content-placeholder">
+                <!-- 이곳에 각 카테고리의 내용(이미지 그리드, 텍스트 등)이 들어갈 자리 -->
+                [ works archive section ]
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
