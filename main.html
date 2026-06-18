@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALLDIE - Index</title>
+    <title>ALLDIE - Archive</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
 
     <div class="wrapper">
         <nav>
-            <a href="main.html" class="logo-small">alldie</a>
+            <a href="index.html" class="logo-small">ad</a>
             <ul class="menu-list">
                 <li><a href="#" class="menu-link active" data-target="works">works</a></li>
                 <li><a href="#" class="menu-link" data-target="about">about</a></li>
@@ -21,7 +21,29 @@
 
         <main>
             <section id="works" class="content-section active">
-                <div class="placeholder">[ works archive / modular synth signals & cinema apparatus ]</div>
+                <div class="sub-menu">
+                    <button class="sub-link active" data-filter="all">all</button>
+                    <button class="sub-link" data-filter="hasangcheol">하상철</button>
+                    <button class="sub-link" data-filter="motoko">모토코</button>
+                    <button class="sub-link" data-filter="kimik">김익</button>
+                </div>
+
+                <div class="works-grid">
+                    <div class="work-item" data-artist="hasangcheol">
+                        <div class="work-thumb">[하상철 인스톨레이션 이미지/영상]</div>
+                        <div class="work-info">하상철 - 시네마 장치 프로젝트 01</div>
+                    </div>
+
+                    <div class="work-item" data-artist="motoko">
+                        <div class="work-thumb">[모토코 오디오 플레이어/아트워크]</div>
+                        <div class="work-info">모토코 - Compilation Track / Modular Synth Signal</div>
+                    </div>
+
+                    <div class="work-item" data-artist="kimik">
+                        <div class="work-thumb">[김익 작업 아카이브]</div>
+                        <div class="work-info">김익 - 물리적 기계 장치 연구</div>
+                    </div>
+                </div>
             </section>
 
             <section id="about" class="content-section">
@@ -39,22 +61,41 @@
     </div>
 
     <script>
-        // 새로고침 없이 콘텐츠를 스위칭하는 스크립트
-        const links = document.querySelectorAll('.menu-link');
+        // 1. 메인 메뉴 스위칭 (Works, About, News, Contact)
+        const mainLinks = document.querySelectorAll('.menu-link');
         const sections = document.querySelectorAll('.content-section');
 
-        links.forEach(link => {
+        mainLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                
-                // 기존 활성화 제거
-                links.forEach(l => l.classList.remove('active'));
+                mainLinks.forEach(l => l.classList.remove('active'));
                 sections.forEach(s => s.classList.remove('active'));
 
-                // 선택한 메뉴 및 섹션 활성화
                 link.classList.add('active');
                 const targetId = link.getAttribute('data-target');
                 document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // 2. Works 내부 아티스트 필터링 시스템 (하상철, 모토코, 김익)
+        const subLinks = document.querySelectorAll('.sub-link');
+        const workItems = document.querySelectorAll('.work-item');
+
+        subLinks.forEach(subLink => {
+            subLink.addEventListener('click', () => {
+                // 서브 메뉴 활성화 클래스 전환
+                subLinks.forEach(sl => sl.classList.remove('active'));
+                subLink.classList.add('active');
+
+                const filterValue = subLink.getAttribute('data-filter');
+
+                workItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-artist') === filterValue) {
+                        item.style.display = 'block'; // 필터에 해당하면 노출
+                    } else {
+                        item.style.display = 'none';  // 해당하지 않으면 숨김
+                    }
+                });
             });
         });
     </script>
