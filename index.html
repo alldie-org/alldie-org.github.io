@@ -7,7 +7,7 @@
     <style>
         /* 기본 초기화 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { width: 100%; height: 100%; overflow: hidden; font-family: sans-serif; background-color: #fcfbf9; }
+        body, html { width: 100%; height: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; background-color: #fcfbf9; }
 
         /* 대문 레이아웃 */
         .splash-container {
@@ -17,33 +17,37 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            transition: opacity 0.8s ease-in-out;
+            transition: opacity 0.6s ease-in-out;
         }
 
-        /* 미니멀 모노그램 (SVG 또는 이미지 배치 공간) */
-        .monogram {
-            width: 120px;
-            height: auto;
-            opacity: 0.85;
-            transition: transform 0.5s ease, opacity 0.5s ease;
+        /* 미니멀 텍스트 스타일 */
+        .text-logo {
+            font-size: 24px;
+            font-weight: 300;
+            color: #111;
+            letter-spacing: -0.03em;
+            user-select: none;
+            opacity: 0.7;
+            transition: opacity 0.4s ease, letter-spacing 0.4s ease;
         }
 
-        /* 마우스 오버 시 미세한 반응 */
-        .splash-container:hover .monogram {
-            transform: scale(1.02);
+        /* 마우스 올렸을 때 드라이한 반응 */
+        .splash-container:hover .text-logo {
             opacity: 1;
+            letter-spacing: 0.02em; /* 미세하게 자간이 벌어지는 효과 */
         }
 
-        /* 전환 시 서서히 사라지는 효과 */
+        /* 전환 시 페이드아웃 */
         .fade-out { opacity: 0; pointer-events: none; }
     </style>
 </head>
 <body>
 
-    <!-- 대문 영역 -->
-    <div class="splash-container" id="splash" onclick="enterSite()">
-        <!-- 여기에 아까 만든 소문자 ad 모노그램 이미지 경로를 넣으면 돼 -->
-        <img src="your-monogram-path.png" alt="ad" class="monogram">
+    <!-- 클릭하면 enterSite 함수가 실행됨 -->
+    <div class="wrapper">
+        <div class="splash-container" id="splash" onclick="enterSite()">
+            <div class="text-logo">alldie</div>
+        </div>
     </div>
 
     <script>
@@ -51,10 +55,10 @@
             const splash = document.getElementById('splash');
             splash.classList.add('fade-out');
             
-            // 0.8초 후 메인 페이지(main.html)로 이동
+            // 0.6초 페이드아웃 애니메이션이 끝난 후 메인으로 이동
             setTimeout(() => {
                 window.location.href = 'main.html';
-            }, 800);
+            }, 600);
         }
     </script>
 </body>
