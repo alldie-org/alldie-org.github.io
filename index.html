@@ -3,70 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALLDIE SYSTEM</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ALLDIE</title>
+    <style>
+        /* 기본 초기화 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; height: 100%; overflow: hidden; font-family: sans-serif; background-color: #fcfbf9; }
+
+        /* 대문 레이아웃 */
+        .splash-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        /* 미니멀 모노그램 (SVG 또는 이미지 배치 공간) */
+        .monogram {
+            width: 120px;
+            height: auto;
+            opacity: 0.85;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        /* 마우스 오버 시 미세한 반응 */
+        .splash-container:hover .monogram {
+            transform: scale(1.02);
+            opacity: 1;
+        }
+
+        /* 전환 시 서서히 사라지는 효과 */
+        .fade-out { opacity: 0; pointer-events: none; }
+    </style>
 </head>
 <body>
 
-    <header class="system-header">
-        <div class="brand">
-            <h1>ALLDIE.ORG</h1>
-            <p class="status-signal">SYSTEM STATUS: ACTIVE</p>
-        </div>
-        <div class="manifesto">
-            <p>"temp"</p>
-        </div>
-    </header>
+    <!-- 대문 영역 -->
+    <div class="splash-container" id="splash" onclick="enterSite()">
+        <!-- 여기에 아까 만든 소문자 ad 모노그램 이미지 경로를 넣으면 돼 -->
+        <img src="your-monogram-path.png" alt="ad" class="monogram">
+    </div>
 
-    <main class="archive-container">
-        
-         <article class="archive-item">
-            <div class="item-meta">
-                <span class="index">01</span>
-                <span class="category">CINEMA-APPARATUS</span>
-                <span class="date">2026</span>
-            </div>
-            <div class="item-body">
-                <h2 class="item-title">SIGNAL SCOPE SOCIETY</h2>
-                <p class="item-desc">35mm reversal film, magnetic tape loop, modular synthesizer control signal.</p>
-            </div>
-        </article>
-
-        <article class="archive-item">
-            <div class="item-meta">
-                <span class="index">02</span>
-                <span class="category">AUDIO-VISUAL PERFORMANCE</span>
-                <span class="date">2026</span>
-            </div>
-            <div class="item-body">
-                <h2 class="item-title">test // FEEDBACK LOOP</h2>
-                <p class="item-desc"> test</p>
-            </div>
-        </article>
-
-        <article class="archive-item">
-            <div class="item-meta">
-                <span class="index">03</span>
-                <span class="category">MECHANICAL SCULPTURE</span>
-                <span class="date">2026</span>
-            </div>
-            <div class="item-body">
-                <h2 class="item-title">BLDC MOTOR KINETIC SYSTEM v1</h2>
-                <p class="item-desc">brushless DC motor, hardware timing controller, physical screen intervention.</p>
-            </div>
-        </article>
-        </main>
-
-    <footer class="system-footer">
-        <div class="identities">
-            <span>test</span>
-            <span>test</span>
-            <span>test</span>
-        </div>
-        <div class="contact">
-            <a href="mailto:info@alldie.org">INFO@ALLDIE.ORG</a>
-        </div>
-    </footer>
-
+    <script>
+        function enterSite() {
+            const splash = document.getElementById('splash');
+            splash.classList.add('fade-out');
+            
+            // 0.8초 후 메인 페이지(main.html)로 이동
+            setTimeout(() => {
+                window.location.href = 'main.html';
+            }, 800);
+        }
+    </script>
 </body>
 </html>
