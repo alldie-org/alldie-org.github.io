@@ -36,6 +36,16 @@ body, html {
     transition: color 0.4s ease, letter-spacing 0.4s ease;
 }
 
+/* subtext-logo */
+.text-logo {
+    font-size: 18px;
+    font-weight: 200;       /* 얇고 건조한 서체 두께 */
+    color: #8c8c8c;         /* 대조를 낮춘 덜 밝은 회색 */
+    letter-spacing: -0.05em; /* 자간을 좁혀 긴장감 부여 */
+    user-select: none;
+    transition: color 0.4s ease, letter-spacing 0.4s ease;
+}
+
 /* 서브 타이포그래피 설정 (모토코 + 하상철) */
 .sub-text {
     margin-top: 14px;       /* 메인 로고와의 정교한 여백 */
