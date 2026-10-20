@@ -37,7 +37,7 @@ body, html {
 }
 
 /* subtext-logo */
-.text-logo {
+.subtext-logo {
     font-size: 18px;
     font-weight: 200;       /* 얇고 건조한 서체 두께 */
     color: #8c8c8c;         /* 대조를 낮춘 덜 밝은 회색 */
