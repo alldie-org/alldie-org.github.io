@@ -6,14 +6,36 @@
     <title>ALLDIE</title>
     <link rel="stylesheet" href="style.css?v=1.1">
     <style>
-        /* 비메오 비디오 컨테이너 레이아웃 */
+        /* 컨테이너 및 전체 레이아웃 설정 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000; /* 배경을 어둡게 유지 */
+            overflow-x: hidden;
+        }
+
+        .splash-container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 40px;
+            box-sizing: border-box;
+        }
+
+        /* 비메오 비디오 영역: 폭을 100%로 꽉 채우고 16:9 비율 유지 */
         .video-wrapper {
             width: 100%;
-            max-width: 800px; /* 비디오 최대 너비 (필요에 따라 조절 가능) */
-            margin: 32px auto 0 auto; /* 로고와의 간격 및 중앙 정렬 */
-            padding: 56.25% 0 0 0; /* 16:9 비율 유지 */
+            max-width: 100%; /* 폭 제한을 해제해서 화면 너비에 꽉 차게 변경 */
+            padding-top: 56.25%; /* 16:9 비율 유지 (9 / 16 = 0.5625) */
             position: relative;
+            margin-top: 24px;
         }
+
         .video-wrapper iframe {
             position: absolute;
             top: 0;
@@ -30,7 +52,7 @@
         <div class="text-logo">alldie</div>
         <div class="subtext-logo">모토코 + 하상철</div>
 
-        <!-- 비메오 임베드 영역 (컨트롤러 숨김, 소리 켬, 자동재생, 루프) -->
+        <!-- 비메오 임베드 영역 (화면 폭에 맞춰 꽉 차게 확대) -->
         <div class="video-wrapper">
             <iframe 
                 id="vimeo-player"
@@ -49,14 +71,11 @@
             var iframe = document.getElementById('vimeo-player');
             if (iframe && typeof Vimeo !== 'undefined') {
                 var player = new Vimeo.Player(iframe);
-                // 화면 클릭 시 브라우저 오디오 차단을 해제하고 소리와 함께 재생
                 player.setVolume(1);
                 player.play().catch(function(error) {
                     console.log("Vimeo play error:", error);
                 });
             }
-            
-            // 기존 스플래시 전환 동작이 있다면 여기에 함께 유지
         }
     </script>
 
