@@ -6,12 +6,12 @@
     <title>ALLDIE</title>
     <link rel="stylesheet" href="style.css?v=1.1">
     <style>
-        /* 비메오 비디오 컨테이너 세팅 (필요시 style.css로 이동 가능) */
+        /* 비메오 비디오 컨테이너 레이아웃 */
         .video-wrapper {
             width: 100%;
-            max-width: 800px; /* 비디오의 최대 너비 제한 (필요에 따라 조절) */
-            margin: 24px auto 0 auto; /* 위쪽 로고와의 간격 및 중앙 정렬 */
-            padding: 56.25% 0 0 0;
+            max-width: 800px; /* 비디오 최대 너비 (필요에 따라 조절 가능) */
+            margin: 32px auto 0 auto; /* 로고와의 간격 및 중앙 정렬 */
+            padding: 56.25% 0 0 0; /* 16:9 비율 유지 */
             position: relative;
         }
         .video-wrapper iframe {
@@ -30,10 +30,11 @@
         <div class="text-logo">alldie</div>
         <div class="subtext-logo">모토코 + 하상철</div>
 
-        <!-- 비메오 임베드 영역 -->
+        <!-- 비메오 임베드 영역 (컨트롤러 숨김, 소리 켬, 자동재생, 루프) -->
         <div class="video-wrapper">
             <iframe 
-                src="https://player.vimeo.com/video/1219213776?h=4400af376b&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1" 
+                id="vimeo-player"
+                src="https://player.vimeo.com/video/1219213776?h=4400af376b&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=0&amp;loop=1&amp;controls=0&amp;background=1" 
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
                 referrerpolicy="strict-origin-when-cross-origin" 
                 title="ALLDIE Video">
@@ -43,6 +44,21 @@
 
     <!-- 비메오 API 스크립트 -->
     <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+        function enterSite() {
+            var iframe = document.getElementById('vimeo-player');
+            if (iframe && typeof Vimeo !== 'undefined') {
+                var player = new Vimeo.Player(iframe);
+                // 화면 클릭 시 브라우저 오디오 차단을 해제하고 소리와 함께 재생
+                player.setVolume(1);
+                player.play().catch(function(error) {
+                    console.log("Vimeo play error:", error);
+                });
+            }
+            
+            // 기존 스플래시 전환 동작이 있다면 여기에 함께 유지
+        }
+    </script>
 
 </body>
 </html>
