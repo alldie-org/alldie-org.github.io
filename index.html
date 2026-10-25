@@ -27,7 +27,6 @@
             justify-content: flex-start;
             padding: 40px 16px;
             box-sizing: border-box;
-            cursor: pointer; /* 클릭 가능한 영역임을 직관적으로 표시 */
         }
 
         /* 헤더 / 프로필 정보 영역 */
@@ -73,29 +72,50 @@
             border: 0;
         }
 
-        /* 영상 우측 하단 캡션 스타일 */
-        .video-caption {
+        /* 영상 우측 하단 캡션 및 토글 버튼 영역 */
+        .video-info-box {
             position: absolute;
             bottom: 16px;
             right: 20px;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.75);
-            letter-spacing: 0.02em;
+            text-align: right;
             z-index: 10;
-            pointer-events: none;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
         }
 
-        /* 오직 작품 제목만 이탤릭체로 적용 */
+        .video-caption {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.75);
+            letter-spacing: 0.02em;
+        }
+
         .video-caption span {
             font-style: italic;
+            color: #fff;
+        }
+
+        /* 음소거 토글 버튼 스타일 */
+        .audio-toggle-btn {
+            display: inline-block;
+            margin-top: 4px;
+            font-size: 0.75rem;
+            color: #aaa;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+            letter-spacing: 0.05em;
+            transition: color 0.2s ease;
+        }
+
+        .audio-toggle-btn:hover {
             color: #fff;
         }
     </style>
 </head>
 <body>
 
-    <div class="splash-container" id="splash" onclick="toggleAudio()">
+    <div class="splash-container" id="splash">
         <div class="header-info">
             <div class="text-logo">alldie</div>
             <div class="subtext-logo">모토코 + 하상철</div>
@@ -110,7 +130,7 @@
             </div>
         </div>
 
-        <!-- 비메오 임베드 영역 (초기 음소거 상태로 시작하려면 muted=1 설정) -->
+        <!-- 비메오 임베드 영역 -->
         <div class="video-wrapper">
             <iframe 
                 id="vimeo-player"
@@ -120,9 +140,12 @@
                 title="SignalScopeSociety-Exhibition-Doc-20260404-0419-Faction">
             </iframe>
             
-            <!-- 영상 우측 하단 캡션 -->
-            <div class="video-caption">
-                <span>Signal Scope Society</span> (2026)
+            <!-- 우측 하단 캡션 및 뮤트 토글 버튼 -->
+            <div class="video-info-box">
+                <div class="video-caption">
+                    <span>Signal Scope Society</span> (2026, Faction)
+                </div>
+                <button id="audio-btn" class="audio-toggle-btn" onclick="toggleAudio()">[mute]</button>
             </div>
         </div>
     </div>
@@ -144,19 +167,22 @@
             }
         });
 
-        // 클릭할 때마다 사운드가 켜지고 꺼지는 토글 함수
+        // 캡션 하단 버튼을 누를 때 작동하는 토글 함수
         function toggleAudio() {
             var iframe = document.getElementById('vimeo-player');
+            var btn = document.getElementById('audio-btn');
+            
             if (iframe && typeof Vimeo !== 'undefined') {
                 var player = new Vimeo.Player(iframe);
                 
-                // 현재 음소거 상태를 확인한 뒤 반대로 전환
                 player.getMuted().then(function(muted) {
                     if (muted) {
-                        player.setMuted(false); // 소리 켜기
+                        player.setMuted(false);
                         player.setVolume(1);
+                        btn.textContent = '[sound]'; // 소리가 켜지면 표기 변경
                     } else {
-                        player.setMuted(true);  // 소리 끄기 (뮤트)
+                        player.setMuted(true);
+                        btn.textContent = '[mute]';  // 음소거되면 표기 변경
                     }
                 }).catch(function(error) {
                     console.log("Audio toggle error:", error);
