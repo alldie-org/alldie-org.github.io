@@ -72,21 +72,22 @@
             border: 0;
         }
 
-        /* 영상 우측 하단에 위치하는 이탤릭 캡션 스타일 */
+        /* 영상 우측 하단 캡션 스타일 (기본은 노멀 폰트) */
         .video-caption {
             position: absolute;
             bottom: 16px;
             right: 20px;
             font-size: 0.85rem;
-            font-style: italic;
             color: rgba(255, 255, 255, 0.75);
             letter-spacing: 0.02em;
             z-index: 10;
-            pointer-events: none; /* 클릭 방해 방지 */
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8); /* 어두운 배경에서 가독성 확보 */
+            pointer-events: none;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
         }
 
+        /* 오직 작품 제목만 이탤릭체로 적용 */
         .video-caption span {
+            font-style: italic;
             color: #fff;
         }
     </style>
@@ -118,7 +119,7 @@
                 title="SignalScopeSociety-Exhibition-Doc-20260404-0419-Faction">
             </iframe>
             
-            <!-- 영상 우측 하단 이탤릭 캡션 -->
+            <!-- 영상 우측 하단 캡션 (제목만 이탤릭, 연도/장소는 노멀) -->
             <div class="video-caption">
                 <span>Signal Scope Society</span> (2026, Faction)
             </div>
