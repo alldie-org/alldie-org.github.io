@@ -79,11 +79,25 @@
             border: 0;
         }
 
-        /* 영상 하단 외부로 이동한 캡션 및 토글 버튼 영역 */
+        /* 영상 하단 외부 캡션 및 토글 버튼 영역 (페이드인 적용) */
         .video-info-box {
             width: 100%;
             margin-top: 10px;
             text-align: right;
+            opacity: 0;
+            animation: fadeInCaption 1.2s ease-in-out forwards;
+            animation-delay: 0.5s; /* 페이지 로드 후 0.5초 뒤에 서서히 등장 */
+        }
+
+        @keyframes fadeInCaption {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .video-caption {
@@ -146,7 +160,7 @@
             </iframe>
         </div>
 
-        <!-- 영상 바깥 우측 하단 캡션 및 sound 버튼 -->
+        <!-- 영상 바깥 우측 하단 캡션 및 sound 버튼 (페이드인 적용됨) -->
         <div class="video-info-box">
             <div class="video-caption">
                 <span>Signal Scope Society</span> (2026)
