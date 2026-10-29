@@ -23,24 +23,42 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* 전체 요소를 왼쪽으로 정렬 */
+            align-items: flex-start;
             justify-content: flex-start;
-            padding: 40px; /* 좌우 여백을 동일하게 주어 좌상단 느낌 살림 */
+            padding: 40px;
             box-sizing: border-box;
         }
 
-        /* 헤더 / 프로필 정보 영역 (좌측 상단 정렬) */
+        /* 헤더 영역: alldie는 좌측, 나머지 정보는 우측으로 배치하기 위한 Flexbox */
         .header-info {
-            text-align: left; /* 텍스트를 왼쪽으로 정렬 */
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 20px;
             width: 100%;
         }
 
+        /* 왼쪽 alldie 로고 */
+        .text-logo {
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* 우측으로 보낼 작가명 및 링크 그룹 */
+        .header-right-group {
+            text-align: right;
+        }
+
+        .subtext-logo {
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
         .links-container {
-            margin-top: 12px;
+            margin-top: 6px;
             display: flex;
-            gap: 12px;
-            justify-content: flex-start; /* 링크들도 왼쪽으로 정렬 */
+            gap: 10px;
+            justify-content: flex-end; /* 우측 정렬 */
             align-items: center;
             font-size: 0.75rem;
             white-space: nowrap;
@@ -136,16 +154,19 @@
 
     <div class="splash-container" id="splash">
         <div class="header-info">
+            <!-- 좌측 상단 alldie -->
             <div class="text-logo">alldie</div>
-            <div class="subtext-logo">모토코 + 하상철</div>
             
-            <!-- 심사위원용 최소 외부 링크 (좌측 정렬) -->
-            <div class="links-container">
-                <a href="https://instagram.com/motoko.v_s" target="_blank" onclick="event.stopPropagation();">IG: @motoko.v_s</a>
-                <span>|</span>
-                <a href="https://instagram.com/hasc.default" target="_blank" onclick="event.stopPropagation();">IG: @hasc.default</a>
-                <span>|</span>
-                <a href="mailto:info@alldie.org" onclick="event.stopPropagation();">Mail: info@alldie.org</a>
+            <!-- 우측 상단으로 이동한 작가명 및 링크 그룹 -->
+            <div class="header-right-group">
+                <div class="subtext-logo">모토코 + 하상철</div>
+                <div class="links-container">
+                    <a href="https://instagram.com/motoko.v_s" target="_blank" onclick="event.stopPropagation();">IG: @motoko.v_s</a>
+                    <span>|</span>
+                    <a href="https://instagram.com/hasc.default" target="_blank" onclick="event.stopPropagation();">IG: @hasc.default</a>
+                    <span>|</span>
+                    <a href="mailto:info@alldie.org" onclick="event.stopPropagation();">Mail: info@alldie.org</a>
+                </div>
             </div>
         </div>
 
